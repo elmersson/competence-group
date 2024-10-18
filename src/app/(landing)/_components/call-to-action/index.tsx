@@ -2,7 +2,7 @@
 
 import GradientText from "@/components/global/gradient-text"
 import { Button } from "@/components/ui/button"
-import { BadgePlus } from "lucide-react"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import Link from "next/link"
 
 const CallToAction = () => {
@@ -30,11 +30,24 @@ const CallToAction = () => {
                         Go to Regent
                     </Button>
                 </Link>
-                <Link href="/sign-in">
-                    <Button className="rounded-xl text-base flex gap-2 w-full">
-                        <BadgePlus /> Get Started
-                    </Button>
-                </Link>
+                <SignedIn>
+                    <Link
+                        href="/home"
+                        className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
+                    >
+                        Home
+                    </Link>
+                </SignedIn>
+                <SignedOut>
+                    <SignInButton>
+                        <button
+                            type="button"
+                            className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
+                        >
+                            Sign in
+                        </button>
+                    </SignInButton>
+                </SignedOut>
             </div>
         </div>
     )
