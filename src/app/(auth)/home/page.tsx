@@ -1,4 +1,4 @@
-import { UserButton } from "@clerk/nextjs"
+import { SignOutButton, UserButton } from "@clerk/nextjs"
 
 export default async function HomePage() {
     return (
@@ -16,6 +16,14 @@ export default async function HomePage() {
                                         },
                                     }}
                                 />
+                                <SignOutButton>
+                                    <button
+                                        type="button"
+                                        className="text-sm font-semibold text-white bg-red-500 rounded px-4 py-2"
+                                    >
+                                        Sign Out
+                                    </button>
+                                </SignOutButton>
                             </div>
                         </header>
                     </div>
