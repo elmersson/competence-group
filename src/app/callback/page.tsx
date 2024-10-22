@@ -1,24 +1,21 @@
-import { createUserIfNotExists } from "@/actions/auth" // Adjust the import path as needed
+import prisma from "@/lib/prisma"
 import { currentUser } from "@clerk/nextjs/server"
-// app/auth/callback/page.tsx
 import { redirect } from "next/navigation"
 
 export default async function AuthCallback() {
-    const clerk = await currentUser()
+    const user = await currentUser()
 
-    if (!clerk?.id) {
-        redirect("/sign-in")
+    if (!user) {
+        redirect("/")
     }
 
-    const { isNewUser } = await createUserIfNotExists(clerk.id)
+    const loggedInUser = await prisma.user.findUnique({
+        where: { clerkId: user.id },
+    })
 
-    if (isNewUser) {
-        // Redirect to '/company-type' on first login
+    if (loggedInUser) {
         redirect("/home")
     } else {
-        // Redirect to home page on subsequent logins
-        redirect("/home")
+        redirect("callback/company-type")
     }
-
-    // You can also add a loading state here if needed
 }

@@ -32,14 +32,14 @@ const CallToAction = () => {
                 </Link>
                 <SignedIn>
                     <Link
-                        href="/home"
+                        href="/callback"
                         className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
                     >
                         Home
                     </Link>
                 </SignedIn>
                 <SignedOut>
-                    <SignInButton>
+                    <SignInButton forceRedirectUrl="/callback">
                         <button
                             type="button"
                             className="px-4 py-2 rounded-full bg-[#131316] text-white text-sm font-semibold"
