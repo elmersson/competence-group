@@ -39,8 +39,8 @@ model User {
   createdAt DateTime   @default(now())
   clerkId   String     @unique
   image     String?
-  company   Company    @relation(fields: [companyId], references: [id])
-  companyId String     @db.Uuid
+  company   Company   @relation(fields: [companyId], references: [id])
+  companyId String    @db.Uuid
 
   group     Group[]
   posts     Post[]
