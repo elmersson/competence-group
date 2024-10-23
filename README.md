@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🖊 Competence Group app
+
+## Description
+
+An app designed for knowledge sharing att Regent.
+
+## Tech-stack
+
+### 📱💻🖥️ Frontend: [NextJS](https://github.com/vercel/next.js), [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres), [TailwindCSS](https://github.com/tailwindlabs/tailwindcss), [Shadcn](https://github.com/shadcn-ui/ui), [TypeScript](https://github.com/microsoft/TypeScript), [Zustand](https://github.com/pmndrs/zustand)[Tanstack Query](https://github.com/tanstack/query).
+
+### 💻🔧🚀: Backend: [Supabase](https://github.com/supabase/supabase),[Clerk](https://github.com/clerk/javascript).
 
 ## Getting Started
 
