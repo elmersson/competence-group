@@ -1,10 +1,16 @@
+import { onAuthenticatedUser } from "@/actions/auth"
+import { redirect } from "next/navigation"
 import { Navigation } from "./_components/navigation"
 
 type Props = {
     children: React.ReactNode
 }
 
-const AuthLayout = ({ children }: Props) => {
+const AuthLayout = async ({ children }: Props) => {
+    const user = await onAuthenticatedUser()
+
+    if (user.status === 400) redirect("/callback/sign-in")
+
     return (
         <div className="flex h-full dark:bg-[#1F1F1F]">
             <Navigation />

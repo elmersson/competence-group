@@ -2,7 +2,7 @@
 
 import type { CompanyType } from "@/app/callback/company-type/page"
 import prisma from "@/lib/prisma"
-import { clerkClient } from "@clerk/nextjs/server"
+import { clerkClient, currentUser } from "@clerk/nextjs/server"
 
 interface createUserProps {
     userId: string
@@ -68,6 +68,41 @@ export async function createUser({ userId, companyType }: createUserProps) {
     }
 
     return { user, isNewUser }
+}
+
+export const onAuthenticatedUser = async () => {
+    try {
+        const clerk = await currentUser()
+        if (!clerk) return { status: 404 }
+
+        const user = await prisma.user.findUnique({
+            where: {
+                clerkId: clerk.id,
+            },
+            select: {
+                id: true,
+                firstname: true,
+                lastname: true,
+            },
+        })
+        if (user)
+            return {
+                status: 200,
+                id: user.id,
+                image: clerk.imageUrl,
+                username: `${user.firstname} ${user.lastname}`,
+            }
+        return {
+            status: 404,
+        }
+    } catch (error: unknown) {
+        if (isPrismaClientKnownRequestError(error) && error.code === "P2002") {
+            // ... existing code ...
+        }
+        return {
+            status: 400,
+        }
+    }
 }
 
 function isPrismaClientKnownRequestError(

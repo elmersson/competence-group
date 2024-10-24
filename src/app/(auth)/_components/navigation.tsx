@@ -1,7 +1,10 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+import { Home } from "@/icons"
 import { cn } from "@/lib/utils"
-import { ChevronsLeft, MenuIcon } from "lucide-react"
+import { ChevronsLeft, MenuIcon, PlusIcon } from "lucide-react"
+import Link from "next/link"
 import { type ElementRef, useEffect, useRef, useState } from "react"
 import { useMediaQuery } from "usehooks-ts"
 import { UserItem } from "./user-item"
@@ -111,6 +114,27 @@ export const Navigation = () => {
                 </button>
                 <div>
                     <UserItem />
+                </div>
+                <div>
+                    <Link href="/home" className="hidden md:inline">
+                        <Button
+                            variant="ghost"
+                            className="flex gap-4 w-full justify-start hover:bg-themeGray items-center text-sm text-themeTextGray"
+                        >
+                            Home
+                            <Home />
+                        </Button>
+                    </Link>
+
+                    <Link href="/channel/create" className="hidden md:inline">
+                        <Button
+                            variant="ghost"
+                            className="flex gap-4 w-full justify-start hover:bg-themeGray items-center text-sm text-themeTextGray"
+                        >
+                            Create Channel
+                            <PlusIcon />
+                        </Button>
+                    </Link>
                 </div>
                 <div
                     className="absolute right-0 top-0 h-full w-1 cursor-ew-resize bg-primary/10 opacity-0 transition group-hover/sidebar:opacity-100"
